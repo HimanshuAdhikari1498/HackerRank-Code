@@ -6,30 +6,31 @@ using namespace std;
 vector<string> cavityMap(vector<string> grid) {
     vector<string> r;
     string m;
-    int row=grid.size();
-    
-    int left=stoi(grid[0].at(2));
-    cout<<"left :: "<<left;
-    /*for(int i=1;i<row-1;i++)
+    for(int i=0;i<grid.size();i++)
     {
-        int col=grid[i].length();
-        for(int j=1;j<col-1;j++)
+        if(i==0 || i==grid.size()-1)
         {
-            m="";
-            int left=stoi(grid[i].at(j-1));
-            int right=stoi(grid[i].at(j+1));
-            int top=stoi(grid[i-1].at(j));
-            int down=stoi(grid[i+1].at(j));
-            int val=stoi(grid[i].at(j));
-            if(val>top && val>down && val>left && val>right)
+            r.push_back(grid[i]);
+            continue;
+        }
+        else
+        {
+            m=grid[i];
+            for(int j=1;j<grid[i].length()-1;j++)
             {
-                m=m+grid[i];
-                m.replace(j,j,"X");
-                r.push_back(m);
-
+                int left=stoi(to_string(grid[i].at(j-1)-'0'));
+                int right=stoi(to_string(grid[i].at(j+1)-'0'));
+                int top=stoi(to_string(grid[i-1].at(j)-'0'));
+                int down=stoi(to_string(grid[i+1].at(j)-'0'));
+                int val=stoi(to_string(grid[i].at(j)-'0'));
+                if(val>top && val>down && val>left && val>right)
+                {
+                    m.replace(j,1,"X");
+                }
             }
         }
-    }*/
+            r.push_back(m);
+    }
     return r;
 
 }
